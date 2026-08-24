@@ -949,3 +949,46 @@ body.view-control-buttons .viewControlButton {
 .viewControlButton-6 {
   margin-left: 105px;
 }
+
+/* Landing page overlay: facade image + enter button */
+#landing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: url('img/fachada.jpg') center 80% no-repeat;
+  background-size: cover;
+  opacity: 1;
+  -webkit-transition: opacity 0.8s ease;
+  transition: opacity 0.8s ease;
+}
+
+#landing.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#enterButton {
+  margin-bottom: 11%;
+  padding: 14px 46px;
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 32px;
+  cursor: pointer;
+}
+
+.no-touch #enterButton:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #000000;
+}

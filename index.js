@@ -30,6 +30,12 @@
   var sitePlanElement = document.querySelector('#sitePlan');
   var planDotElements = [];
   var menuBackdropElement = document.querySelector('#menuBackdrop');
+  var landingElement = document.querySelector('#landing');
+
+  // Hide the landing overlay when the enter button is clicked.
+  document.querySelector('#enterButton').addEventListener('click', function() {
+    landingElement.classList.add('hidden');
+  });
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
 
