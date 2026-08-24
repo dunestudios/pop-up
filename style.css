@@ -102,13 +102,15 @@ body.multiple-scenes.mobile #titleBar {
 #fullscreenToggle {
   display: none;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 12px;
+  right: 12px;
   width: 40px;
   height: 40px;
   padding: 5px;
-  background-color: rgb(103,115,131);
-  background-color: rgba(103,115,131,0.8);
+  background-color: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
 }
 
 .mobile #fullscreenToggle {
@@ -152,13 +154,15 @@ body.fullscreen-enabled #fullscreenToggle {
 #autorotateToggle {
   display: block;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 12px;
+  right: 12px;
   width: 40px;
   height: 40px;
   padding: 5px;
-  background-color: rgb(103,115,131);
-  background-color: rgba(103,115,131,0.8);
+  background-color: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
 }
 
 .mobile #autorotateToggle {
@@ -168,11 +172,11 @@ body.fullscreen-enabled #fullscreenToggle {
 
 /* If there is a fullscreen button, autorotate must placed a bit to the left */
 body.fullscreen-enabled #autorotateToggle {
-  right: 40px;
+  right: 60px;
 }
 
 body.fullscreen-enabled.mobile #autorotateToggle {
-  right: 50px;
+  right: 70px;
 }
 
 #autorotateToggle .icon {
@@ -258,18 +262,21 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 
 #sceneList {
   position: absolute;
-  top: 3px;
+  top: 12px;
   left: -220px;
   padding-top: 52px;
   width: 220px;
-  max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  max-height: calc(100% - 24px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   margin-left: 0;
   -webkit-transition: margin-left 0.5s ease-in-out;
   transition: margin-left 0.5s ease-in-out;
-  background-color: black;
-  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
 }
 
 .mobile #sceneList {
@@ -278,14 +285,21 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 
 #sceneList .scenes {
   width: 100%;
-  background-color: black;
-  border-radius: 6px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: transparent;
+  border-radius: 16px;
 }
 
 .mobile #sceneList {
   width: 100%;
   height: 100%;
   left: -100%;
+  top: 0;
+  max-height: 100%;
+  border-radius: 0;
 }
 
 .mobile #sceneList.enabled {
@@ -297,7 +311,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 }
 
 #sceneList.enabled {
-  margin-left: 223px;
+  margin-left: 232px;
 }
 
 #sceneList .scene {
@@ -333,8 +347,52 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 }
 
 /* Hide scene list when only a single scene exists */
-body.single-scene #sceneList, body.single-scene #sceneListToggle {
+body.single-scene #sceneList, body.single-scene #sceneListToggle, body.single-scene #sitePlan {
   display: none;
+}
+
+/* Site plan minimap */
+#sitePlan {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 300px;
+}
+
+.mobile #sitePlan {
+  display: none;
+}
+
+#sitePlan .plan-wrapper {
+  position: relative;
+}
+
+#sitePlan .plan-image {
+  display: block;
+  width: 100%;
+  opacity: 0.6;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+#sitePlan .plan-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.no-touch #sitePlan .plan-dot:hover {
+  background-color: #ffffff;
+}
+
+#sitePlan .plan-dot.current {
+  background-color: #e8a33d;
+  border-color: #ffffff;
+  box-shadow: 0 0 6px 2px rgba(232, 163, 61, 0.7);
 }
 
 /* Link hotspot */

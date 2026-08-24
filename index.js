@@ -27,6 +27,8 @@
   var sceneListElement = document.querySelector('#sceneList');
   var sceneElements = document.querySelectorAll('#sceneList .scene');
   var sceneListToggleElement = document.querySelector('#sceneListToggle');
+  var sitePlanElement = document.querySelector('#sitePlan');
+  var planDotElements = [];
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
 
@@ -157,6 +159,29 @@
     });
   });
 
+  // Create a dot on the site plan for each scene that has map coordinates.
+  var planWrapperElement = sitePlanElement.querySelector('.plan-wrapper');
+  scenes.forEach(function(scene) {
+    if (scene.data.mapX == null || scene.data.mapY == null) {
+      return;
+    }
+    var dot = document.createElement('a');
+    dot.href = 'javascript:void(0)';
+    dot.classList.add('plan-dot');
+    dot.setAttribute('data-id', scene.data.id);
+    dot.style.left = scene.data.mapX + '%';
+    dot.style.top = scene.data.mapY + '%';
+    dot.title = scene.data.name;
+    dot.addEventListener('click', function() {
+      switchScene(scene);
+      if (document.body.classList.contains('mobile')) {
+        hideSceneList();
+      }
+    });
+    planWrapperElement.appendChild(dot);
+    planDotElements.push(dot);
+  });
+
   // DOM elements for view controls.
   var viewUpElement = document.querySelector('#viewUp');
   var viewDownElement = document.querySelector('#viewDown');
@@ -189,6 +214,7 @@
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
+    updatePlan(scene);
   }
 
   function updateSceneName(scene) {
@@ -198,6 +224,17 @@
   function updateSceneList(scene) {
     for (var i = 0; i < sceneElements.length; i++) {
       var el = sceneElements[i];
+      if (el.getAttribute('data-id') === scene.data.id) {
+        el.classList.add('current');
+      } else {
+        el.classList.remove('current');
+      }
+    }
+  }
+
+  function updatePlan(scene) {
+    for (var i = 0; i < planDotElements.length; i++) {
+      var el = planDotElements[i];
       if (el.getAttribute('data-id') === scene.data.id) {
         el.classList.add('current');
       } else {
