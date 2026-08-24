@@ -29,6 +29,7 @@
   var sceneListToggleElement = document.querySelector('#sceneListToggle');
   var sitePlanElement = document.querySelector('#sitePlan');
   var planDotElements = [];
+  var menuBackdropElement = document.querySelector('#menuBackdrop');
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
 
@@ -142,6 +143,9 @@
   // Set handler for scene list toggle.
   sceneListToggleElement.addEventListener('click', toggleSceneList);
 
+  // Tapping the blurred backdrop closes the menu.
+  menuBackdropElement.addEventListener('click', hideSceneList);
+
   // Start with the scene list open on desktop.
   if (!document.body.classList.contains('mobile')) {
     showSceneList();
@@ -246,16 +250,19 @@
   function showSceneList() {
     sceneListElement.classList.add('enabled');
     sceneListToggleElement.classList.add('enabled');
+    menuBackdropElement.classList.add('enabled');
   }
 
   function hideSceneList() {
     sceneListElement.classList.remove('enabled');
     sceneListToggleElement.classList.remove('enabled');
+    menuBackdropElement.classList.remove('enabled');
   }
 
   function toggleSceneList() {
     sceneListElement.classList.toggle('enabled');
     sceneListToggleElement.classList.toggle('enabled');
+    menuBackdropElement.classList.toggle('enabled');
   }
 
   function startAutorotate() {

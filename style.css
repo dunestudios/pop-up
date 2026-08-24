@@ -294,20 +294,24 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 }
 
 .mobile #sceneList {
-  width: 100%;
-  height: 100%;
-  left: -100%;
-  top: 0;
-  max-height: 100%;
-  border-radius: 0;
+  width: min(340px, calc(100% - 48px));
+  height: auto;
+  top: 50%;
+  left: 50%;
+  max-height: calc(100% - 140px);
+  padding: 10px 0;
+  border-radius: 16px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin-left: -150vw;
 }
 
 .mobile #sceneList.enabled {
-  margin-left: 100%;
+  margin-left: 0;
 }
 
 .mobile #sceneList .scenes {
-  height: 100%;
+  height: auto;
 }
 
 #sceneList.enabled {
@@ -335,7 +339,9 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 }
 
 .mobile #sceneList .scene .text {
-  line-height: 60px;
+  line-height: 40px;
+  text-align: center;
+  padding: 0 10px;
 }
 
 .no-touch #sceneList .scene:hover {
@@ -349,6 +355,23 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 /* Hide scene list when only a single scene exists */
 body.single-scene #sceneList, body.single-scene #sceneListToggle, body.single-scene #sitePlan {
   display: none;
+}
+
+/* Blurred backdrop behind the mobile menu: blocks clicks on the pano */
+#menuBackdrop {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.mobile #menuBackdrop.enabled {
+  display: block;
 }
 
 /* Site plan minimap */
