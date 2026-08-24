@@ -266,7 +266,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   left: -220px;
   padding-top: 52px;
   width: 220px;
-  max-height: calc(100% - 24px);
+  max-height: calc(100% - 330px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -393,6 +393,44 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle, body.single-sc
   background-color: #e8a33d;
   border-color: #ffffff;
   box-shadow: 0 0 6px 2px rgba(232, 163, 61, 0.7);
+}
+
+/* Compress menu and shrink plan on shorter desktop windows so they never overlap.
+   (Below 500px the .mobile layout takes over and the plan is hidden.) */
+@media (min-width: 501px) and (min-height: 501px) and (max-height: 900px) {
+  #sceneList {
+    max-height: calc(100% - 235px);
+  }
+
+  #sceneList .scene {
+    height: 40px;
+  }
+
+  #sceneList .scene .text {
+    line-height: 40px;
+  }
+
+  #sitePlan {
+    width: 200px;
+  }
+}
+
+@media (min-width: 501px) and (min-height: 501px) and (max-height: 640px) {
+  #sceneList {
+    max-height: calc(100% - 185px);
+  }
+
+  #sceneList .scene {
+    height: 32px;
+  }
+
+  #sceneList .scene .text {
+    line-height: 32px;
+  }
+
+  #sitePlan {
+    width: 150px;
+  }
 }
 
 /* Link hotspot */
